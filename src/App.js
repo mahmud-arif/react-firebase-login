@@ -1,33 +1,27 @@
 import React from 'react';
 
 import { Route, Switch } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import ProtectedRoute from './components/ProtectedRoute';
-import Home from './components/Home';
-import Login from './components/Login';
+import PrivateRoute from './components/ProtectedRoute';
+import AppBar from './components/AppBar.js'; 
+import SecretOne from './pages/SecretOne';
+import Login from './pages/Login';
+import Home from './pages/Home'; 
 
 function App(props) {
-	const { isAuthenticated, isVerifying } = props;
+	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+	const isVerifying = useSelector((state) => state.auth.isVerifying);
 	return (
-		<Switch>
-			<ProtectedRoute
-				exact
-				path="/"
-				component={Home}
-				isAuthenticated={isAuthenticated}
-				isVerifying={isVerifying}
-			/>
-			<Route path="/login" component={Login} />
-		</Switch>
+    <>
+      <AppBar/>
+      <Switch>
+          <Route path="/login" component={Login} />
+          <PrivateRoute exact path="/secret" component={SecretOne} isAuthenticated={isAuthenticated} isVerifying={isVerifying} />
+          <Route path="/" component={Home} />
+      </Switch>
+    </>
 	);
 }
 
-function mapStateToProps(state) {
-	return {
-		isAuthenticated: state.auth.isAuthenticated,
-		isVerifying: state.auth.isVerifying
-	};
-}
-
-export default connect(mapStateToProps)(App);
+export default App;

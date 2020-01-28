@@ -7,8 +7,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
-import styles from './styles/LoginStyle';
-import Form from './Form';
+import styles from './styles/loginStyle';
+import Form from '../components/Form';
 
 import { useSelector } from 'react-redux';
 
@@ -17,7 +17,7 @@ const Login = (props) => {
 	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
 	if (isAuthenticated) {
-		return <Redirect to="/" />;
+		return <Redirect to="/secret" />;
 	} else {
 		return (
 			<Container component="main" maxWidth="xs">

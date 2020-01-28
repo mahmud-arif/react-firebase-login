@@ -12,7 +12,6 @@ import {
 export default (
 	state = {
 		isLoggingIn: false,
-		isLoggingOut: false,
 		isVerifying: false,
 		loginError: false,
 		logoutError: false,

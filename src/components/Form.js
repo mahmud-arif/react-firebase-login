@@ -84,7 +84,7 @@ const FormControl = (props) => {
 							fullWidth
 							variant="contained"
 							color="primary"
-							className={props.classes.submit}
+							className={classes.submit}
 							onClick={handleSubmit}
 						>
 							Login
